@@ -1,0 +1,119 @@
+﻿<!-- CSS -->
+<style>
+    body {
+        background: #f3f3f3;
+        overflow-y: hidden;
+    }
+
+    .content{
+        width: 70vw;
+        height: 90vh;
+        margin-top: 5vh;
+        margin-left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .form-image{
+        width: 50%;
+        height: 55vh;
+        margin-top: 15vh;
+        background: white;
+        margin-left: 50%;
+        transform: translateX(-50%);
+        border-radius: 5px;
+        box-shadow: 1px 1px 1px 2px lightgray;
+    }
+
+    .form-image p{
+        padding-top: 50px;
+    }
+
+    .image{
+        margin-top: 30px;
+        width: 55%;
+        height: 50%;
+        margin-left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .image img{
+        max-width: 280px;
+        max-height: 230px;
+        margin-left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .image input{
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        position: absolute;
+        cursor:pointer;
+        opacity: 0;
+    }
+
+    .btn-send {
+        margin-left: 50%;
+        transform: translateX(-50%);
+        background: mediumseagreen;
+        border: none;
+        color: white;
+        padding: 5px;
+        width: 90px;
+        font-size: 15px;
+        margin-top: 8%;
+        border-radius: 3px;
+        cursor: pointer;
+        transition: 0.5s;
+    }
+
+    .btn-send:hover{
+        opacity: 0.5;
+        transition: 0.5s;
+    }
+
+</style>
+
+
+
+<!-- HTML -->
+<section class="content">
+    <div class="form-image">
+
+        <center>
+            <p>IMAGEM</p>
+        </center>
+        <form method="post" enctype="multipart/form-data">
+            <div class="image">
+                <input type="file" name="Upload" onchange="previewFile()"/> 
+                <img id="image-change" src="@ViewBag.UrlImage" />
+            </div>
+
+            <button type="submit" class="btn-send">Enviar</button>
+        </form>
+    </div>
+</section>
+
+
+
+<!-- JS -->
+<script>
+    function previewFile() {
+        var preview = document.querySelector('#image-change');
+        var file = document.querySelector('input[type=file]').files[0];
+        var reader = new FileReader();
+
+        reader.onloadend = function () {
+            preview.src = reader.result;
+        }
+
+        if (file)
+        {
+            reader.readAsDataURL(file);
+        }
+        else
+        {
+            preview.src = "";
+        }
+    }
+</script>
